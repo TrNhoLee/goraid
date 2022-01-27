@@ -1,9 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:go_raid/Commons/Constants/AppConsts.dart';
-import 'package:go_raid/ViewModels/Home/HomeViewModel.dart';
 import 'package:go_raid/Views/HomePage/Child/BodyTabView.dart';
-import 'package:go_raid/Views/HomePage/Child/ListPicture.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

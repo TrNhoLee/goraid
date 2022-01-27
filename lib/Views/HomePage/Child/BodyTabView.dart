@@ -44,6 +44,7 @@ class _BodyTabViewState extends State<BodyTabView> with
   //Widget
   //--------------------------------------------
   @override
+  // ignore: must_call_super
   Widget build(BuildContext context) {
     return RefreshIndicator(
       child: SingleChildScrollView(
