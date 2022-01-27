@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_raid/Commons/Constants/AppConsts.dart';
 import 'package:go_raid/ViewModels/Home/HomeViewModel.dart';
+import 'package:go_raid/Views/HomePage/Child/BodyTabView.dart';
 import 'package:go_raid/Views/HomePage/Child/ListPicture.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,26 +16,21 @@ class _HomePageState extends State<HomePage> {
   //--------------------------------------------
   //ViewModel
   //--------------------------------------------
-  late HomeViewModel _homeViewModel;
 
   //--------------------------------------------
   //Properties
   //--------------------------------------------
-  late List<String> _listUrlPicture;
 
   //--------------------------------------------
   //Initialize
   //--------------------------------------------
   @override
   void initState() {
-    _homeViewModel = HomeViewModel();
-    _listUrlPicture = _homeViewModel.getListPicture();
     super.initState();
   }
 
   @override
   void dispose() {
-    _homeViewModel.dispose();
     super.dispose();
   }
 
@@ -43,26 +39,51 @@ class _HomePageState extends State<HomePage> {
   //--------------------------------------------
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: OutlinedButton(
-          style: ButtonStyle(
-            shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20))),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+    return DefaultTabController(
+      initialIndex: 0,
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          title: TextButton.icon(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+            ),
+            icon: const Icon(Icons.account_circle),
+            label: const Text(lblButtonAll),
+            onPressed: _appBarBtnProfilePress,
           ),
-          child:
-              const Text(lblButtonAll, style: TextStyle(color: Colors.black)),
-          onPressed: _appBarBtnAllPress,
+          bottom: const TabBar(
+            tabs: <Widget>[
+              Tab(
+                text: "All",
+              ),
+              Tab(
+                text: "1",
+              ),
+              Tab(
+                text: "3",
+              ),
+              Tab(
+                text: "5",
+              ),
+            ],
+          ),
         ),
-      ),
-      body: Center(
-        child: RefreshIndicator(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.only(top: 10, bottom: 10),
-            child: ListPicture(lstPictureUrl: _listUrlPicture),
-          ),
-          onRefresh: _lstPictureRefresh,
+        body: const TabBarView(
+          children: <Widget>[
+            Center(
+              child: BodyTabView(numTab: allTab),
+            ),
+            Center(
+              child: BodyTabView(numTab: oneTab),
+            ),
+            Center(
+              child: BodyTabView(numTab: threeTab),
+            ),
+            Center(
+              child: BodyTabView(numTab: fiveTab),
+            ),
+          ],
         ),
       ),
     );
@@ -72,13 +93,5 @@ class _HomePageState extends State<HomePage> {
   //Private function
   //--------------------------------------------
 
-  Future<void> _lstPictureRefresh() async {
-    _listUrlPicture = _homeViewModel.refreshListPicture(_listUrlPicture);
-
-    setState(() {
-      _listUrlPicture;
-    });
-  }
-
-  _appBarBtnAllPress() {}
+  _appBarBtnProfilePress() {}
 }
