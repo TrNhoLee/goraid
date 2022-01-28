@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:go_raid/ViewModels/Home/HomeViewModel.dart';
-import 'package:go_raid/Views/HomePage/Child/ListPicture.dart';
+import 'package:go_raid/Views/HomePage/Child/ListRoomRaid.dart';
 
 class BodyTabView extends StatefulWidget {
   final int numTab;
@@ -12,8 +12,8 @@ class BodyTabView extends StatefulWidget {
   _BodyTabViewState createState() => _BodyTabViewState();
 }
 
-class _BodyTabViewState extends State<BodyTabView> with
-    AutomaticKeepAliveClientMixin<BodyTabView> {
+class _BodyTabViewState extends State<BodyTabView>
+    with AutomaticKeepAliveClientMixin<BodyTabView> {
   //--------------------------------------------
   //ViewModel
   //--------------------------------------------
@@ -22,7 +22,7 @@ class _BodyTabViewState extends State<BodyTabView> with
   //--------------------------------------------
   //Properties
   //--------------------------------------------
-  late List<String> _listUrlPicture;
+  late List<String> _listRoom;
 
   //--------------------------------------------
   //Initialize
@@ -30,7 +30,7 @@ class _BodyTabViewState extends State<BodyTabView> with
   @override
   void initState() {
     _homeViewModel = HomeViewModel();
-    _listUrlPicture = _homeViewModel.getListRoomBossWithNumTab(widget.numTab);
+    _listRoom = _homeViewModel.getListRoomBossWithNumTab(widget.numTab);
     super.initState();
   }
 
@@ -47,10 +47,7 @@ class _BodyTabViewState extends State<BodyTabView> with
   // ignore: must_call_super
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 10, bottom: 10),
-        child: ListPicture(lstPictureUrl: _listUrlPicture),
-      ),
+      child: ListRoomRaid(lstRoomRaid: _listRoom),
       onRefresh: _lstPictureRefresh,
     );
   }
@@ -59,10 +56,10 @@ class _BodyTabViewState extends State<BodyTabView> with
   //Private function
   //--------------------------------------------
   Future<void> _lstPictureRefresh() async {
-    _listUrlPicture = _homeViewModel.getListRoomBossWithNumTab(widget.numTab);
+    _listRoom = _homeViewModel.getListRoomBossWithNumTab(widget.numTab);
 
     setState(() {
-      _listUrlPicture;
+      _listRoom;
     });
   }
 
