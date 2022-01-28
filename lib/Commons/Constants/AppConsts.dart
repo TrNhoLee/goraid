@@ -11,6 +11,7 @@ const int allTab = 1;
 const int oneTab = 2;
 const int threeTab = 3;
 const int fiveTab = 4;
+const int megaTab = 5;
 
 //Search page
 const String hintInputSearch = "Search and find out";

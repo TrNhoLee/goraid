@@ -64,6 +64,9 @@ class _HomePageState extends State<HomePage> {
               Tab(
                 text: "5",
               ),
+              Tab(
+                text: "Mega",
+              ),
             ],
           ),
         ),
@@ -77,6 +80,9 @@ class _HomePageState extends State<HomePage> {
             ),
             Center(
               child: BodyTabView(numTab: threeTab),
+            ),
+            Center(
+              child: BodyTabView(numTab: fiveTab),
             ),
             Center(
               child: BodyTabView(numTab: fiveTab),

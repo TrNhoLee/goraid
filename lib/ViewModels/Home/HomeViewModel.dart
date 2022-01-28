@@ -28,6 +28,8 @@ class HomeViewModel {
       "AA",
       "AA",
       "AA",
+      "AA",
+      "AA",
     ];
   }
 
@@ -61,6 +63,13 @@ class HomeViewModel {
     ];
   }
 
+  List<String> getListRoomBossMega() {
+    return [
+      "AA",
+      "AA",
+    ];
+  }
+
   List<String> getListRoomBossWithNumTab(int numTab) {
     List<String> result = [];
 
@@ -76,6 +85,9 @@ class HomeViewModel {
         break;
       case fiveTab:
         result = getListRoomBossFiveStar();
+        break;
+      case megaTab:
+        result = getListRoomBossMega();
         break;
       default:
         break;
