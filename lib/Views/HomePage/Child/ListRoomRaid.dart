@@ -1,9 +1,10 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:go_raid/Models/RoomRaid/RoomRaidModel.dart';
 import 'package:go_raid/Views/HomePage/Child/SubInfoRoomRaid.dart';
 
 class ListRoomRaid extends StatefulWidget {
-  final List<String> lstRoomRaid;
+  final List<RoomRaid> lstRoomRaid;
 
   const ListRoomRaid({Key? key, required this.lstRoomRaid}) : super(key: key);
 
@@ -19,6 +20,7 @@ class _ListRoomRaidState extends State<ListRoomRaid> {
   //--------------------------------------------
   //Properties
   //--------------------------------------------
+  late bool _fullRoom = false;
 
   //--------------------------------------------
   //Initialize
@@ -41,11 +43,17 @@ class _ListRoomRaidState extends State<ListRoomRaid> {
     return ListView.builder(
       itemCount: widget.lstRoomRaid.length,
       itemBuilder: (context, index) {
+        _fullRoom = widget.lstRoomRaid[index].trainers.length == 5;
+
         return ListTile(
+          enabled: !_fullRoom,
           leading: const FlutterLogo(),
-          title: const Text("RauMuongBeTi"),
+          title: Text(widget.lstRoomRaid[index].boss.name),
           subtitle: SubInfoRoomRaid(roomRaid: widget.lstRoomRaid[index]),
-          trailing: TextButton(onPressed: _goRoom, child: const Text("Go")),
+          trailing: _fullRoom
+              ? null
+              : TextButton(onPressed: _goRoom, child: const Text("Go")),
+          onTap: _fullRoom ? null : _goRoom,
         );
       },
     );

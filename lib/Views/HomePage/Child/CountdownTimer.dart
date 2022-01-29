@@ -28,8 +28,8 @@ class _CountdownTimerState extends State<CountdownTimer> {
   //--------------------------------------------
   @override
   void initState() {
-    _minutes = (widget.seconds / 60).round();
-    _seconds = widget.seconds - (widget.seconds / 60).round() * 60;
+    _minutes = widget.seconds ~/ 60;
+    _seconds = widget.seconds - widget.seconds ~/ 60 * 60;
     _startTimer();
     super.initState();
   }

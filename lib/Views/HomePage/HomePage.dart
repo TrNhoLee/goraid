@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
               child: BodyTabView(numTab: fiveTab),
             ),
             Center(
-              child: BodyTabView(numTab: fiveTab),
+              child: BodyTabView(numTab: megaTab),
             ),
           ],
         ),

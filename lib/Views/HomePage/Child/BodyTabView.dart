@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:go_raid/Models/RoomRaid/RoomRaidModel.dart';
 import 'package:go_raid/ViewModels/Home/HomeViewModel.dart';
 import 'package:go_raid/Views/HomePage/Child/ListRoomRaid.dart';
 
@@ -22,7 +23,7 @@ class _BodyTabViewState extends State<BodyTabView>
   //--------------------------------------------
   //Properties
   //--------------------------------------------
-  late List<String> _listRoom;
+  late List<RoomRaid> _listRoom;
 
   //--------------------------------------------
   //Initialize
